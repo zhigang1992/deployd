@@ -4,6 +4,7 @@
     <title>Deployd Documentation</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   </head>
   <body>
     <div class="navbar navbar-fixed-top">
@@ -15,8 +16,15 @@
           <ul class="nav">
             <li><a href="collection.html">Collection</a></li>
             <li><a href="usercollection.html">User Collection</a></li>
-            <li><a href="static.html">Static</a></li>
+            <li><a href="files.html">Files</a></li>
           </ul>
+          <script>
+            $('.nav a').each(function () {
+              var url = window.location.toString();
+              if(url.indexOf($(this).attr('href')) === (url.lastIndexOf('/') + 1))
+                $(this).parent().addClass('active');
+            });
+          </script>
         </div>
       </div>
     </div>
@@ -59,7 +67,7 @@ Content-Type: application/json
 }
 </code></pre>
 
-<p>The server will respond with the object, which will have a new "_id" property. </p>
+<p>The server will respond with the object, which will have a new <code>_id</code> property. </p>
 
 <pre><code>200 OK
 {
@@ -70,7 +78,7 @@ Content-Type: application/json
 }
 </code></pre>
 
-<p>This _id is used to find the object's URL (i.e. /people/4f71fc7c2ba744786f000001)</p>
+<p>This <code>_id</code> is used to find the object's URL (i.e. <code>/people/4f71fc7c2ba744786f000001</code>)</p>
 
 <h2>Listing data</h2>
 
@@ -112,7 +120,7 @@ Content-Type: application/json
 
 <h2>Updating an object</h2>
 
-<p>A PUT request at an object's URL will update the object. You must include all properties except for "_id".</p>
+<p>A PUT request at an object's URL will update the object. You must include all properties except for <code>_id</code>.</p>
 
 <pre><code>PUT /people/4f71fc7c2ba744786f000001
 Content-Type: application/json
@@ -154,14 +162,14 @@ Content-Type: application/json
 
 <h2>Advanced querying</h2>
 
-<p>If you need to query additional types of properties, pass a JSON object as the "q" parameter with the properties you wish to filter:</p>
+<p>If you need to query additional types of properties, pass a JSON object as the <code>q</code> parameter with the properties you wish to filter:</p>
 
 <pre><code>GET /people?q={
   "age": 23
 }
 </code></pre>
 
-<p>The "q" parameter supports <a href="http://www.mongodb.org/display/DOCS/Advanced+Queries">MongoDB's query language</a> for particularly advanced queries. Note that Collections do not currently support embedded documents or arrays.</p>
+<p>The <code>q</code> parameter supports <a href="http://www.mongodb.org/display/DOCS/Advanced+Queries">MongoDB's query language</a> for particularly advanced queries. Note that Collections do not currently support embedded documents or arrays.</p>
 
 <pre><code>GET /people?q={
   "$orderby": { "age": 1 },
@@ -185,9 +193,9 @@ Content-Type: application/json
 
 <h2>Reading and setting properties</h2>
 
-<p>In an event micro-script, the "this" object refers to the current object, and has all of the properties of the object.</p>
+<p>In an event micro-script, the <code>this</code> object refers to the current object, and has all of the properties of the object.</p>
 
-<p>You can set values on the "this" object during an On Post or On Put event. These changes will be saved to the database.</p>
+<p>You can set values on the <code>this</code> object during an On Post or On Put event. These changes will be saved to the database.</p>
 
 <pre><code>// On Post:
 this.dateCreated = new Date();
@@ -206,7 +214,7 @@ this.creator = me._id;
 
 <h2>Cancelling an event</h2>
 
-<p>You can stop any event by calling the cancel(message, [code]) method.</p>
+<p>You can stop any event by calling the <code>cancel(message, [code])</code> method.</p>
 
 <pre><code>//On Delete:
 if (this.protected) {
@@ -221,7 +229,7 @@ DELETE /posts/123456
 }
 </code></pre>
 
-<p>You can pass an integer to the cancel() method as the second parameter to set the HTTP status code. For example, 401 means "Unauthorized".</p>
+<p>You can pass an integer to the <code>cancel()</code> method as the second parameter to set the HTTP status code. For example, 401 means "Unauthorized".</p>
 
 <pre><code>//On Put
 if (this.creator !== me._id) {
@@ -240,7 +248,7 @@ Content-Type: application/json
 
 <h2>Validation</h2>
 
-<p>Use the error(name, message) function to add a validation error.</p>
+<p>Use the <code>error(name, message)</code> function to add a validation error.</p>
 
 <pre><code>//On Post
 if (this.age &lt; 18) {
@@ -264,7 +272,7 @@ POST /people
 
 <h2>Hiding properties</h2>
 
-<p>If you wish to hide certain properties from a user, use the hide(propertyName) function.</p>
+<p>If you wish to hide certain properties from a user, use the <code>hide(propertyName)</code> function.</p>
 
 <pre><code>//On Get
 if (this.creator !== me._id) {
@@ -275,7 +283,7 @@ if (this.creator !== me._id) {
 
 <h2>Protecting properties from modification</h2>
 
-<p>Use the protect(propertyName) function to protect specified properties during a POST or PUT.</p>
+<p>Use the <code>protect(propertyName)</code> function to protect specified properties during a POST or PUT.</p>
 
 <pre><code>//On Put
 protect('createdDate');

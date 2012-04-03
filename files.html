@@ -4,6 +4,7 @@
     <title>Deployd Documentation</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   </head>
   <body>
     <div class="navbar navbar-fixed-top">
@@ -15,15 +16,22 @@
           <ul class="nav">
             <li><a href="collection.html">Collection</a></li>
             <li><a href="usercollection.html">User Collection</a></li>
-            <li><a href="static.html">Static</a></li>
+            <li><a href="files.html">Files</a></li>
           </ul>
+          <script>
+            $('.nav a').each(function () {
+              var url = window.location.toString();
+              if(url.indexOf($(this).attr('href')) === (url.lastIndexOf('/') + 1))
+                $(this).parent().addClass('active');
+            });
+          </script>
         </div>
       </div>
     </div>
 
-    <div class="container"><h1>Static Resource</h1>
+    <div class="container"><h1>Files Resource</h1>
 
-<p>The Static Resource allows you host static files from your app, such as HTML, browser JavaScript, CSS, images, and videos. </p>
+<p>The Files Resource allows you host static files from your app, such as HTML, browser JavaScript, CSS, images, and videos. </p>
 
 <h2>Accessing files</h2>
 
@@ -34,9 +42,9 @@
 
 <h2>Folders</h2>
 
-<p>If you prefer to have seperate folders for Javascript, CSS, and images, create multiple Static Resources at the paths you want to store the files.</p>
+<p>If you prefer to have separate folders for Javascript, CSS, and images, create multiple Static Resources at the paths you want to store the files.</p>
 
-<p>You can also give a Static Resource an empty path ("/"). This will assign it to the root of your app.</p>
+<p>You can also give a Static Resource an empty path <code>/</code>. This will assign it to the root of your app.</p>
 
 <h2>Home page</h2>
 
