@@ -1,10 +1,10 @@
 # Collection Resource
 
-A Collection resource allows your app to save and load data in a simple schema.
+A Collection resource allows client apps to save and query data.
 
 ## Setting up a collection
 
-After creating a Collection resource in the dashboard, you can set up the schema by dragging properties into the database and naming them. 
+After creating a Collection resource in the dashboard, you can set up the schema that will automatically validate data sent to the resource url over HTTP. You can configure this schema in the dashboard.
 
 The grid view below the property list allows you to edit the Collection manually.
 
@@ -19,7 +19,7 @@ You can currently use the following property types:
 
 ## Formats
 
-You must format the request body as a JSON string and pass the header "Content-Type: application/json".
+When POSTing or PUTing data to a resource `/path`, you must format the request body as a JSON string and pass the header "Content-Type: application/json".
 
 ## Saving data
 
@@ -84,7 +84,7 @@ A GET request at an object's URL will return the properties of that object:
 
 ## Updating an object
 
-A PUT request at an object's URL will update the object. You must include all properties except for `_id`.
+A PUT (or POST) request at an object's URL will update the object. You must include all properties except for `_id`.
 
     PUT /people/4f71fc7c2ba744786f000001
     Content-Type: application/json
