@@ -4126,6 +4126,10 @@ body {
   width: 250px;
   margin-right: 10px;
 }
+#resource-sidebar-container .section-header a:not(.btn) i {
+  vertical-align: middle;
+  margin-right: 4px;
+}
 #resource-sidebar-container .well {
   margin-bottom: 10px;
 }
@@ -4342,6 +4346,35 @@ body {
   display: inline-block;
   margin-left: 8px;
   vertical-align: middle;
+}
+#middleware {
+  width: 500px;
+}
+#middleware hr {
+  border-bottom: none;
+  border-width: 1px;
+  border-top-color: #555555;
+}
+#middleware .component-item.disabled {
+  opacity: 0.6;
+}
+#middleware .component-item.disabled:hover {
+  opacity: 1;
+}
+#middleware .component-item .component-item-header {
+  padding-left: 19px;
+  height: 28px;
+  line-height: 28px;
+}
+#middleware .component-item .component-item-header i {
+  position: relative;
+  top: 1px;
+}
+#middleware .component-item .component-item-header .actions {
+  display: none;
+}
+#middleware .component-item .component-item-header:hover .actions {
+  display: block;
 }
 .ace-deployd .ace_editor {
   border: 2px solid #9f9f9f;
@@ -5208,6 +5241,9 @@ td {
 }
 .nav-sidebar .nav {
   margin-bottom: 0;
+}
+.nav-sidebar .dashboard-type-none {
+  cursor: default;
 }
 #sidebar-well {
   background: none;
