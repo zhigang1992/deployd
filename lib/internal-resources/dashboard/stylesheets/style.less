@@ -2,7 +2,6 @@
 
 // editor
 @import "layout.less";
-@import "deployments.less";
 @import "editor.less";
 @import "prettify.less";
 @import "mixins.less";
@@ -814,6 +813,7 @@ table input {
   padding: 20px;
   margin: 0;
   .border-radius(5px);
+  .box-sizing(border-box);
 }
 
 #events-panel {
@@ -824,7 +824,7 @@ table input {
   border-bottom: none;
   margin: 0 -20px;
   padding: 0 20px;
-  a {
+  > li > a {
     font-size: 10px;
     text-transform: uppercase;
     font-weight: bold;
@@ -836,10 +836,16 @@ table input {
       opacity: 1;
     }
   }
+
+  > li.open > a:hover {
+    color: #ffffff;
+    background-color: #999999;
+    border-color: #999999;
+  }
   
-  li.active {
+  > li.active {
     margin-bottom: 0;
-    a {
+    > a {
       opacity: 1;
       background: rgba(0, 0, 0, 0.25) !important;
       border-color: rgba(0, 0, 0, 0.25);
